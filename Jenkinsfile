@@ -16,19 +16,14 @@ pipeline{
         }
         stage('Run Tests'){
             steps {
-                bat 'npx cypress run'
+                bat 'cypress run --browser=chrome --spec cypress/e2e/ --reporter mocha-allure-reporter'
             }
         }
         stage('Generate Report') {
             steps {
                 script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '../allure-results']]
-                    ])
+                    bat 'npm install -g allure-commandline --save-dev'
+                    bat 'allure generate allure-results --clean -o allure-report && allure open  allure-report'
                 }
             }
         }
