@@ -8,5 +8,6 @@ context('Main page', () => {
 
     it('should ', () => {
         cy.findAllByText('QA.live.study').should('have.length', 1);
+        cy.get('img').should('be.visible');
     });
 });
