@@ -1,13 +1,16 @@
-import '../../support/commands';
-import { mainPage } from "../../pages/mainPage";
+import { MainPage } from "../../pages/MainPage";
+import { homePageURL } from "../../config/endpoints.config";
 
 context('Main page', () => {
+
+    const mainPage = new MainPage(homePageURL);
+    const titleText = 'QA.live.study';
+
     beforeEach(() => {
-        mainPage.visit();
+        mainPage.open();
     })
 
     it('Checking the display of page elements', () => {
-        cy.findAllByText('QA.live.study').should('have.length', 1);
-        cy.get('img').should('be.visible');
+        mainPage.getByText(titleText).should('have.length', 1);
     });
 });
