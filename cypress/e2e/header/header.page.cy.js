@@ -1,13 +1,13 @@
 import { HeaderPage } from "../../pages/HeaderPage";
 import { homePageURL } from "../../config/endpoints.config";
 
-context('Main page', () => {
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+})
 
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        // returning false here prevents Cypress from
-        // failing the test
-        return false
-    })
+context('Header page', () => {
 
     const headerPage = new HeaderPage(homePageURL);
 
