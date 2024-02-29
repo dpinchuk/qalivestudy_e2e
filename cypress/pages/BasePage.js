@@ -15,7 +15,7 @@ export class BasePage {
     };
 
     getItemByText(text, index) {
-        return cy.findAllByAltText(text).eq(index);
+        return cy.findAllByText(text).eq(index);
     };
 
 }
