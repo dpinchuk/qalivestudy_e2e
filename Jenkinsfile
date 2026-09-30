@@ -1,6 +1,5 @@
 pipeline {
   agent any
-  tools { nodejs 'NodeJS' }
   options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '10'))
     disableConcurrentBuilds()
@@ -16,7 +15,8 @@ pipeline {
   environment {
     CI = 'true'
     E2E_BASE_URL = 'https://qalivestudy.com'
-    PLAYWRIGHT_BROWSERS_PATH = "${WORKSPACE}/.cache/ms-playwright"
+    PATH = '/opt/qa-live-study-node-v24.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    PLAYWRIGHT_BROWSERS_PATH = '/var/lib/jenkins/.cache/ms-playwright'
   }
   stages {
     stage('Install') {
