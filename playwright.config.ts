@@ -10,7 +10,7 @@ export default defineConfig({
   projects: [
     {name:'public-desktop',testMatch:/public-smoke\.spec\.ts/u,use:{...devices['Desktop Chrome'],viewport:{width:1440,height:1000}}},
     {name:'public-mobile',testMatch:/public-smoke\.spec\.ts/u,use:{...devices['Pixel 7'],locale:'uk-UA'}},
-    {name:'authenticated',testMatch:/authenticated-smoke\.spec\.ts/u,use:{...devices['Desktop Chrome']}},
+    {name:'authenticated',testMatch:/authenticated-smoke\.spec\.ts/u,use:{...devices['Desktop Chrome'],extraHTTPHeaders:{DNT:'1','Sec-GPC':'1','X-QA-Automation':'synthetic'}}},
     {name:'staging-lifecycle',testMatch:/staging-account-lifecycle\.spec\.ts/u,fullyParallel:false,workers:1,use:{...devices['Desktop Chrome']}},
   ],
 });

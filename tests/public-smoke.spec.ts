@@ -10,7 +10,7 @@ test.describe('public production smoke',()=>{
       await expect(page.locator('main h1')).toBeVisible();
       await expect(page.locator('[data-ukraine-banner]')).toBeVisible();
       await expect(page.locator('[data-site-footer]')).toBeVisible();
-      await expect(page.locator('main article')).toHaveCount(7);
+      await expect(page.locator('main article')).toHaveCount(9);
       expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
       await expect(page).toHaveTitle(/QA\.Live\.Study/iu);
     });

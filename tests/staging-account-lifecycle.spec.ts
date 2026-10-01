@@ -13,7 +13,7 @@ test('register, login and delete synthetic accounts only on an isolated target',
   const origin=validateTarget(),run=`${Date.now()}-${process.env.BUILD_NUMBER??'local'}`;let completed=0;
   for(let index=0;index<iterations;index++){
     const password=`Qa!${run}-${index}-safe`,email=`synthetic-${run}-${index}@example.invalid`;
-    const context=await playwrightRequest.newContext({baseURL:origin,extraHTTPHeaders:{origin,DNT:'1','Sec-GPC':'1'}});
+    const context=await playwrightRequest.newContext({baseURL:origin,extraHTTPHeaders:{origin,DNT:'1','Sec-GPC':'1','X-QA-Automation':'synthetic'}});
     try{
       expect((await context.post('/api/v1/auth/register',{data:{name:'Synthetic',lastName:'Monitor',email,password}})).status()).toBe(201);
       expect((await context.get('/api/v1/me')).status()).toBe(200);expect((await context.post('/api/v1/auth/logout')).status()).toBe(204);
